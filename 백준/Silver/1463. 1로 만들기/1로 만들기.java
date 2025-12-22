@@ -1,22 +1,20 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-// 다이나믹 프로그래밍
 public class Main {
-    static int[] D;
-    static int x;
-    public static void main(String[] args) throws IOException {
+    static int dp[];
+    public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        x = Integer.parseInt(br.readLine());
-        D = new int[x+1];
+        int n = Integer.parseInt(br.readLine());
+        dp = new int[n+1];
 
-        D[1] = 0;
-        for (int i = 2; i <= x; i++) {
-            D[i] = D[i - 1] + 1;
-            if(i % 2 == 0) D[i] = Math.min(D[i], D[i/2] + 1);
-            if(i % 3 == 0) D[i] = Math.min(D[i], D[i/3] + 1);
+        dp[1] = 0;
+        for(int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + 1;
+            if(i % 3 == 0) dp[i] = Math.min(dp[i], dp[i/3] + 1);
+            if(i % 2 == 0) dp[i] = Math.min(dp[i], dp[i/2] + 1);
         }
-        sb.append(D[x]);
-        System.out.print(sb);
+        System.out.print(dp[n]);
     }
 }
