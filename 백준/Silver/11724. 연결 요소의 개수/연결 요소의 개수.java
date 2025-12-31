@@ -1,23 +1,22 @@
 import java.io.*;
-import java.util.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int N, M;
+    static int n, m;
     static boolean [][] list;
-    static boolean visited[];
+    static boolean [] visited;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int count = 0;
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        list = new boolean[N+1][N+1];
-        visited = new boolean[N+1];
+        n = Integer.parseInt(st.nextToken()); // 정점 개수
+        m = Integer.parseInt(st.nextToken()); // 간선 개수
+        list = new boolean[n+1][n+1];
+        visited = new boolean[n+1];
 
-           for(int i = 0; i < M; i++) {
+        for(int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int u = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
@@ -25,20 +24,21 @@ public class Main {
             list[v][u] = true;
         }
 
-        for(int i = 1; i <= N; i++) {
-            if(DFS(i)){
+        for(int i = 1; i <= n; i++) {
+            if(!visited[i]) {
+                DFS(i);
                 count++;
             }
         }
-        sb.append(count);
-        System.out.print(sb);
+        System.out.print(count);
     }
 
     private static boolean DFS(int node) {
-        if(visited[node])   return false;
-
+        if(visited[node])
+            return false;
         visited[node] = true;
-        for(int i = 1; i <= N; i++) {
+
+        for(int i = 1; i <= n; i++) {
             if(list[node][i]) {
                 DFS(i);
             }
