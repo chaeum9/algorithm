@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
         int[][] coordinate = new int[n][2];
 
@@ -21,7 +22,8 @@ public class Main {
         });
 
         for(int i = 0; i < coordinate.length; i++) {
-            System.out.println(coordinate[i][0] + " " + coordinate[i][1]);
+            sb.append(coordinate[i][0]).append(' ').append(coordinate[i][1]).append("\n");
         }
+        System.out.print(sb);
     }
 }
