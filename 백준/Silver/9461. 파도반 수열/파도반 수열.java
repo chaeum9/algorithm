@@ -11,11 +11,9 @@ public class Main {
         dp[1] = 1;
         dp[2] = 1;
         dp[3] = 1;
-        dp[4] = dp[1] + dp[3];
-        dp[5] = dp[4];
 
-        for(int i = 6; i <= 100; i++) {
-            dp[i] = dp[i-5] + dp[i-1];
+        for(int i = 4; i <= 100; i++) {
+            dp[i] = dp[i-2] + dp[i-3];
         }
 
         while(t-- > 0) {
